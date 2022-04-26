@@ -90,5 +90,7 @@ export default {
     height: 40px;
     border: none;
     border-radius: 5px;
+    font-family: inherit
+    ;
 }
 </style>
