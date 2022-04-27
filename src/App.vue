@@ -1,7 +1,13 @@
 <template>
   <div class="container">
-    <Header title="Task Tracker" />
-    <AddTask />
+    <Header
+      @show-add-task="toggleTask"
+      title="Task Tracker"
+      :buttonText="showAddTask"
+    />
+    <div v-if="showAddTask">
+      <AddTask @add-task="addTask" />
+    </div>
     <TasksItem @delete-task="deleteTask" :tasks="tasks" />
   </div>
 </template>
@@ -17,42 +23,51 @@ export default {
   components: {
     Header,
     TasksItem,
-    AddTask
+    AddTask,
   },
-  
+
   data() {
     return {
       tasks: [],
+      showAddTask: false,
     };
   },
   methods: {
-    deleteTask(id) {
+    toggleTask() {
+      this.showAddTask = !this.showAddTask;
+    },
+    addTask(newTask) {
+      const response = fetch("/api/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+      });
+
+      const data = response.json();
+
+      this.tasks = [...this.tasks, data];
+    },
+
+   async deleteTask(id) {
       if (confirm("Are you sure you want to delete this task?")) {
-        this.tasks = this.tasks.filter((task) => task.id !== id);
-      } 
+
+        const response = await fetch(`/api/tasks/${id}`, {
+          method: "DELETE",
+        });
+       response.status === 200 ? (this.tasks = this.tasks.filter(task => task.id !== id)) : alert("Something went wrong, please try again");
+      }
+    },
+
+    async fetchTasks() {
+      const response = await fetch("api/tasks");
+      return response.json();
     },
   },
-  created() {
-    this.tasks = [
-      {
-        id: 1,
-        text: "Learn Vue",
-        day: "April 25 to May 10",
-        complete: false, 
-      },
-      {
-        id: 2,
-        text: "Learn Node",
-        day: "May 10 to May 31",
-        complete: true,
-      },
-      {
-        id: 3,
-        text: "Learn Backend",
-        day: "June 01 to July 31",
-        complete: false,
-      },
-    ];
+
+  async created() {
+    this.tasks = await this.fetchTasks();
   },
 };
 </script>
