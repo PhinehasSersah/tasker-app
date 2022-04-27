@@ -44,15 +44,15 @@ export default {
     };
   },
   methods: {
-    onSubmit(e) {
-        e.preventDefault();
+    onSubmit() {
+        // e.preventDefault();
         if(!this.text || !this.day) {
             alert("Please enter both task and day");
           return;
         }
 
-        const newTask = { 
-            id: this.tasks.length + 1,
+        const newTask = {   
+            // id: Math.floor(Math.random() * 100),
             text: this.text,
             day: this.day,
             complete: false,
@@ -90,5 +90,7 @@ export default {
     height: 40px;
     border: none;
     border-radius: 5px;
+    font-family: inherit
+    ;
 }
 </style>

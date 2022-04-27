@@ -1,60 +1,39 @@
 <template>
   <div class="container">
-    <Header title="Task Tracker" />
-    <AddTask />
-    <TasksItem @delete-task="deleteTask" :tasks="tasks" />
+    <Header
+      @show-add-task="toggleTask"
+      title="Task Tracker"
+      :buttonText="showAddTask"
+    />
+
+    <router-view :showAddTask="showAddTask"></router-view>
+    <TaskFooter />
   </div>
 </template>
 
 
 <script>
 import Header from "./components/Header.vue";
-import TasksItem from "./components/TasksItem.vue";
-import AddTask from "./components/AddTask.vue";
+import TaskFooter from  "./components/TaskFooter.vue";
 
 export default {
   name: "App",
   components: {
     Header,
-    TasksItem,
-    AddTask
+    TaskFooter
   },
-  
+
   data() {
     return {
-      tasks: [],
+      showAddTask: false,
     };
   },
   methods: {
-    deleteTask(id) {
-      if (confirm("Are you sure you want to delete this task?")) {
-        this.tasks = this.tasks.filter((task) => task.id !== id);
-      } 
-    },
-  },
-  created() {
-    this.tasks = [
-      {
-        id: 1,
-        text: "Learn Vue",
-        day: "April 25 to May 10",
-        complete: false, 
-      },
-      {
-        id: 2,
-        text: "Learn Node",
-        day: "May 10 to May 31",
-        complete: true,
-      },
-      {
-        id: 3,
-        text: "Learn Backend",
-        day: "June 01 to July 31",
-        complete: false,
-      },
-    ];
-  },
-};
+    toggleTask() {
+      this.showAddTask = !this.showAddTask;
+    }
+  }
+}
 </script>
 
 
