@@ -1,20 +1,20 @@
 {
   "tasks": [
     {
-      "text": "Cooperate marathon",
-      "day": "This Saturday",
+      "text": "Cooperate Marathon",
+      "day": "This Saturday morning",
       "complete": false,
       "id": 1
     },
     {
       "text": " Meet the Tailor",
-      "day": "wwww",
+      "day": "Next week",
       "complete": false,
       "id": 2
     },
     {
-      "text": "Cooperate marathon",
-      "day": "Absent",
+      "text": "Victor",
+      "day": "wwww",
       "complete": false,
       "id": 3
     }
