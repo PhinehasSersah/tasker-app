@@ -11,7 +11,7 @@ a{
     color: #333;
 }
     footer {
-        margin-top: 30px;
+        margin-top: 2em;
         text-align: center;
     }
 </style>

@@ -1,16 +1,10 @@
 {
   "tasks": [
     {
-      "text": "Cooperate Marathon",
-      "day": "This Saturday morning",
+      "text": "Start Alx full stack",
+      "day": "May 11",
       "complete": false,
       "id": 1
-    },
-    {
-      "text": " Meet the Tailor",
-      "day": "Next week",
-      "complete": false,
-      "id": 2
     }
   ]
 }

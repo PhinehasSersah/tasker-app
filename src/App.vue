@@ -1,26 +1,28 @@
-<template>
-  <div class="container">
-    <Header
-      @show-add-task="toggleTask"
-      title="Task Tracker"
-      :buttonText="showAddTask"
-    />
+<template >
+  <div class="temp">
+    <div class="container">
+      <Header
+        @show-add-task="toggleTask"
+        title="Task Tracker"
+        :buttonText="showAddTask"
+      />
 
-    <router-view :showAddTask="showAddTask"></router-view>
-    <TaskFooter />
+      <router-view :showAddTask="showAddTask"></router-view>
+      <TaskFooter />
+    </div>
   </div>
 </template>
 
 
 <script>
 import Header from "./components/Header.vue";
-import TaskFooter from  "./components/TaskFooter.vue";
+import TaskFooter from "./components/TaskFooter.vue";
 
 export default {
   name: "App",
   components: {
     Header,
-    TaskFooter
+    TaskFooter,
   },
 
   data() {
@@ -31,21 +33,22 @@ export default {
   methods: {
     toggleTask() {
       this.showAddTask = !this.showAddTask;
-    }
-  }
-}
+    },
+  },
+};
 </script>
-
-
-
-
-
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+.temp {
+  background: url("./zac-ong-RYvOI54rmPw-unsplash.jpg");
+  height: 100vh;
+  display: flex;
+  object-fit: cover;
 }
 body {
   font-family: "Poppins", sans-serif;
